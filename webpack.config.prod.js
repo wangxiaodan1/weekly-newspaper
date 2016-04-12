@@ -10,6 +10,7 @@ const reactRouterPath = path.resolve(NODE_MODULES, 'react-router/umd/ReactRouter
 
 const config = {
   entry: [
+    'babel-polyfill',
     './src/index.js',
   ],
   module: {
@@ -22,6 +23,10 @@ const config = {
         loader: 'react-hot!babel',
       },
       {
+        test: /\.css/,
+        loader: 'style!css',
+      },
+      {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract('style',
           'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]' +
@@ -31,6 +36,10 @@ const config = {
       {
         test: /\.(png|jpg)$/,
         loader: 'url-loader?limit=100000000',
+      },
+      {
+        test: /\.svg$/,
+        loader: 'babel!react-svg',
       },
     ],
     noParse: [reactPath],
@@ -49,7 +58,7 @@ const config = {
     filename: 'bundle.js',
   },
   plugins: [
-    new ExtractTextPlugin('dist/stylesheets/[name].css', {
+    new ExtractTextPlugin('stylesheets/[name].css', {
       allChunks: true,
     }),
     new webpack.DefinePlugin({

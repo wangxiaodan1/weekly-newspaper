@@ -1,12 +1,13 @@
 const webpack = require('webpack');
 const path = require('path');
 
-const NODE_MODULES = path.resolve(__dirname, 'node_modules');
+// const NODE_MODULES = path.resolve(__dirname, 'node_modules');
 
 const config = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
     // 'eventsource-polyfill', // necessary for hot reloading with IE
+    'babel-polyfill',
     'webpack/hot/only-dev-server',
     './src/index.js',
   ],
@@ -33,6 +34,10 @@ const config = {
       {
         test: /\.(png|jpg)$/,
         loader: 'url-loader?limit=100000000',
+      },
+      {
+        test: /\.svg$/,
+        loader: 'babel!react-svg'
       },
     ],
   },

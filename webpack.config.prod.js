@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -77,6 +78,21 @@ const config = {
         warnings: false,
       },
       sourceMap: false,
+    }),
+    new HtmlWebpackPlugin({
+      title: 'drmondo',
+      filename: 'index.html',
+      template: 'src/template.html',
+      minify: {
+        html5: true,
+        removeComments: true,
+        removeEmptyAttributes: true,
+        collapseInlineTagWhitespace: true,
+        collapseWhitespace: true,
+        minifyCSS: true,
+        minifyJS: true,
+        minifyURLs: true
+      }
     }),
   ],
 };

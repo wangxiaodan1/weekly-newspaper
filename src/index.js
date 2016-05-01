@@ -27,9 +27,12 @@ reduxRouterMiddleware.listenForReplays(store);
 
 console.log('store', store.getState());
 
+import Component from './components';
+
 render(
   <Provider store={store}>
     {/* Your root Component */}
+    <Component />
   </Provider>,
   rootElement
 );

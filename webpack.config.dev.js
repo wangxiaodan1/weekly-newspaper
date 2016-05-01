@@ -1,5 +1,7 @@
+const AppInfo = require('./AppInfo');
 const webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // const NODE_MODULES = path.resolve(__dirname, 'node_modules');
 
@@ -52,11 +54,18 @@ const config = {
     contentBase: './',
     hot: true,
     headers: { 'Access-Control-Allow-Origin': '*' },
+    port: AppInfo.port,
+    host: AppInfo.host,
   },
   plugins: [
 
     new webpack.NoErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new HtmlWebpackPlugin({
+      title: '',
+      filename: 'index.html',
+      template: 'src/template.html',
+    })
   ],
 };
 

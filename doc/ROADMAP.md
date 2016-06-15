@@ -8,7 +8,6 @@
 
 ## 0.0.2
 1. StoryBoard 外围边框
-1. StoryBoard 添加类型: Card
 1. 组件库添加组件,StoryBoard显示
 
 ## 0.0.3

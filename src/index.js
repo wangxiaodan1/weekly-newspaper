@@ -10,6 +10,9 @@ import { browserHistory } from 'react-router';
 
 const rootElement = document.getElementById('app');
 
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+
 // Sync dispatched route actions to the history
 const reduxRouterMiddleware = syncHistory(browserHistory);
 const createStoreWithMiddleware = applyMiddleware(
@@ -27,12 +30,12 @@ reduxRouterMiddleware.listenForReplays(store);
 
 console.log('store', store.getState());
 
-import Component from './components';
+import Routes from './routes';
 
 render(
   <Provider store={store}>
     {/* Your root Component */}
-    <Component />
+    <Routes />
   </Provider>,
   rootElement
 );

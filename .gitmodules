@@ -1,0 +1,3 @@
+[submodule "src/utils"]
+	path = src/utils
+	url = http://gitlab.chuanty.com/frontend/amumu.git

@@ -14,8 +14,22 @@ class ComponentsList extends React.Component {
     dispatch: PropTypes.func.isRequired,
   };
   _addComponent(componentName) {
-    console.log(componentName);
-    this.props.dispatch(StoryBoardAction.addComponent('Title', {children: 'hello'}));
+    switch (componentName) {
+      case 'Image':
+        this.props.dispatch(StoryBoardAction.addComponent(componentName, { src: 'http://codropspz.tympanus.netdna-cdn.com/codrops/wp-content/uploads/2016/06/Collective223_holmes.png', height: '50px' }));
+        return;
+      case 'Title':
+        this.props.dispatch(StoryBoardAction.addComponent(componentName, { title: '标题' }));
+        return;
+      case 'Brief':
+        this.props.dispatch(StoryBoardAction.addComponent(componentName, { brief: '简介' }));
+        return;
+      case 'Link':
+        this.props.dispatch(StoryBoardAction.addComponent(componentName, { src: 'http://huliyou.net', target: '_blank', content: '链接' }));
+        return;
+      default :
+        return;
+    }
   }
   render() {
     return (
@@ -23,21 +37,30 @@ class ComponentsList extends React.Component {
         <Subheader>组件</Subheader>
         <ListItem
           primaryText="图片"
+          onTouchTap={() => {
+            this._addComponent('Image');
+          }}
         />
         <Divider />
         <ListItem
           primaryText="标题"
           onTouchTap={() => {
-            this._addComponent('标题');
+            this._addComponent('Title');
           }}
         />
         <Divider />
         <ListItem
           primaryText="简介"
+          onTouchTap={() => {
+            this._addComponent('Brief');
+          }}
         />
         <Divider />
         <ListItem
-          primaryText="更多"
+          primaryText="链接"
+          onTouchTap={() => {
+            this._addComponent('Link');
+          }}
         />
         <Divider />
       </List>

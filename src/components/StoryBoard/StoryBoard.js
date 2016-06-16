@@ -34,7 +34,8 @@ class StoryBoard extends React.Component {
         <Toolbar>
           <ToolbarGroup firstChild >
             <RaisedButton label="保存" icon={<AddCircle />} primary />
-            <RaisedButton label="生成jsxJSON" icon={<Code />} primary />
+            <RaisedButton label="jsxJSON" icon={<Code />} primary />
+            <RaisedButton label="jsxJSON" icon={<Code />} primary />
             <RaisedButton label="预览" icon={<Explore />} primary />
             <RaisedButton label="清空" icon={<ActionDeleteForever />} secondary />
           </ToolbarGroup>

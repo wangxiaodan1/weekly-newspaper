@@ -4,38 +4,49 @@
 
 import React, { PropTypes } from 'react';
 import Immutable from 'immutable';
-import { FlatButton } from 'material-ui';
-var Babel = require('babel-standalone');
+import { RaisedButton, Paper, Toolbar, ToolbarGroup } from 'material-ui';
+import ActionDeleteForever from 'material-ui/svg-icons/action/delete-forever';
+import AddCircle from 'material-ui/svg-icons/content/add-circle';
+import Explore from 'material-ui/svg-icons/action/explore';
+import Code from 'material-ui/svg-icons/action/code';
+import getComponent from '../../public/getComponent';
 
 class StoryBoard extends React.Component {
-  static propType = {
+  static propTypes = {
     components: PropTypes.instanceOf(Immutable.List),
-  }
-  _getComponent(componentName, props) {
-    switch (componentName) {
-      case 'Title':
-        return <p {...props} />;
-      default:
-        return <div />;
-    }
-  }
+  };
   _renderComponents(components) {
     const views = [];
     components.forEach((component, index) => {
-      const Com = this._getComponent(component.get('componentName'), component.get('props'));
-      views.push(Com);
+      const Com = getComponent(component.get('componentName'));
+      views.push(<Com key={index} {...component.get('props')} />);
     });
     return views;
   }
   render() {
     return (
-      <div
+      <Paper
+        zDepth={5}
         style={{
           flex: 2,
         }}
       >
-        {this._renderComponents(this.props.components)}
-      </div>
+        <Toolbar>
+          <ToolbarGroup firstChild >
+            <RaisedButton label="保存" icon={<AddCircle />} primary />
+            <RaisedButton label="生成jsxJSON" icon={<Code />} primary />
+            <RaisedButton label="预览" icon={<Explore />} primary />
+            <RaisedButton label="清空" icon={<ActionDeleteForever />} secondary />
+          </ToolbarGroup>
+        </Toolbar>
+        <Paper
+          style={{
+            margin: '10px 10px',
+          }}
+        >
+          {this._renderComponents(this.props.components)}
+        </Paper>
+      </Paper>
     );
   }
 }

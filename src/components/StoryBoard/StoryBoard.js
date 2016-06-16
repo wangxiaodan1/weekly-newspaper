@@ -10,6 +10,7 @@ import AddCircle from 'material-ui/svg-icons/content/add-circle';
 import Explore from 'material-ui/svg-icons/action/explore';
 import Code from 'material-ui/svg-icons/action/code';
 import getComponent from '../../public/getComponent';
+import ComponentCell from './ComponentCell';
 
 class StoryBoard extends React.Component {
   static propTypes = {
@@ -19,7 +20,11 @@ class StoryBoard extends React.Component {
     const views = [];
     components.forEach((component, index) => {
       const Com = getComponent(component.get('componentName'));
-      views.push(<Com key={index} {...component.get('props')} />);
+      views.push(
+        <ComponentCell key={index}>
+          <Com {...component.get('props')} />
+        </ComponentCell>
+      );
     });
     return views;
   }
@@ -34,7 +39,6 @@ class StoryBoard extends React.Component {
         <Toolbar>
           <ToolbarGroup firstChild >
             <RaisedButton label="保存" icon={<AddCircle />} primary />
-            <RaisedButton label="jsxJSON" icon={<Code />} primary />
             <RaisedButton label="jsxJSON" icon={<Code />} primary />
             <RaisedButton label="预览" icon={<Explore />} primary />
             <RaisedButton label="清空" icon={<ActionDeleteForever />} secondary />

@@ -3,6 +3,12 @@
  */
 
 import React, { PropTypes } from 'react';
+
+const styles = {
+  width: '100%',
+  height: '100%',
+};
+
 export default class Image extends React.Component {
   static propTypes = {
     src: PropTypes.string,
@@ -10,7 +16,7 @@ export default class Image extends React.Component {
   };
   render() {
     return (
-      <img {...this.props} />
+      <img {...this.props} style={{ ...styles }} />
     );
   }
 }

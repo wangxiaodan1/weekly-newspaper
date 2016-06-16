@@ -4,6 +4,15 @@
  */
 
 import React, { PropTypes } from 'react';
+import ArrowForward from 'material-ui/svg-icons/navigation/arrow-forward';
+
+const styles = {
+  padding: '10px 10px',
+  width: '100%',
+  color: '#414a51',
+  display: 'flex',
+  alignItems: 'center',
+};
 
 export default class Link extends React.Component {
   static propTypes = {
@@ -13,7 +22,15 @@ export default class Link extends React.Component {
   };
   render() {
     return (
-      <a href={this.props.src} target={this.props.target}>{this.props.content}</a>
+      <a
+        style={{
+          textDecoration: 'none',
+        }}
+        href={this.props.src}
+        target={this.props.target}
+      >
+        <div style={{ ...styles }} >{this.props.content} <ArrowForward style={{marginLeft: '10px'}}/> </div>
+      </a>
     );
   }
 }

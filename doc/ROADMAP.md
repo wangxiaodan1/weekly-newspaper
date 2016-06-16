@@ -9,6 +9,8 @@
 ## 0.0.2
 1. StoryBoard 外围边框
 1. 组件库添加组件,StoryBoard显示
+1. 给StoryBoard添加Component Cell
+1. 给卡片组件添加样式
 
 ## 0.0.3
 1. 检查器样式

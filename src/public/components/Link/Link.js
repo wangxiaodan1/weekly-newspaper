@@ -13,7 +13,7 @@ export default class Link extends React.Component {
   };
   render() {
     return (
-      <a src={this.props.src} target={this.props.target}>{this.props.content}</a>
+      <a href={this.props.src} target={this.props.target}>{this.props.content}</a>
     );
   }
 }

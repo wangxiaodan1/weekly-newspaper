@@ -4,12 +4,12 @@
 
 import React, { PropTypes } from 'react';
 export default class Brief extends React.Component {
-  static propTyps = {
+  static propTypes = {
     brief: PropTypes.string,
   };
   render() {
     return (
-      <textarea value={this.porps.brief} />
+      <p>{this.props.brief}</p>
     );
   }
 }

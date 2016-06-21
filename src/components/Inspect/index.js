@@ -3,5 +3,11 @@
  */
 
 import Inspect from './Inspect';
+import { connect } from 'react-redux';
 
-export default Inspect;
+const mapStateToProps = (state) => ({
+  components: state.StoryBoardReducer.get('components'),
+  selectedComponentIndex: state.StoryBoardReducer.get('selectedComponentIndex'),
+});
+
+export default connect(mapStateToProps)(Inspect);

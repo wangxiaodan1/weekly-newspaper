@@ -3,21 +3,24 @@
  */
 
 import Immutable from 'immutable';
-import * as StroyBoardAction from '../actions/StoryBoardAction';
+import * as StoryBoardAction from '../actions/StoryBoardAction';
 
 const defaultState = Immutable.Map({
   components: Immutable.List([]),
+  selectedComponentIndex: null,
 });
 
 export default (state = defaultState, action) => {
   switch (action.type) {
-    case StroyBoardAction.ADD_COMPONENT:
+    case StoryBoardAction.ADD_COMPONENT:
       let components = state.get('components');
       components = components.push(Immutable.Map({
         componentName: action.componentName,
         props: action.props,
       }));
       return state.set('components', components);
+    case StoryBoardAction.SELECT_COMPONENT:
+      return state.set('selectedComponentIndex', action.index);
     default:
       return state;
   }

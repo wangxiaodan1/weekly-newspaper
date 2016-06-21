@@ -14,7 +14,7 @@ class ComponentCell extends React.Component {
   };
   render() {
     return (
-      <div style={{ ...styles }}>
+      <div style={{ ...styles }} {...this.props}>
         {this.props.children}
       </div>
     );

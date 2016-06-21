@@ -11,17 +11,22 @@ import Explore from 'material-ui/svg-icons/action/explore';
 import Code from 'material-ui/svg-icons/action/code';
 import getComponent from '../../public/getComponent';
 import ComponentCell from './ComponentCell';
+import * as StoryBoardAction from '../../actions/StoryBoardAction';
 
 class StoryBoard extends React.Component {
   static propTypes = {
     components: PropTypes.instanceOf(Immutable.List),
+    dispatch: PropTypes.func.isRequired,
   };
   _renderComponents(components) {
     const views = [];
     components.forEach((component, index) => {
       const Com = getComponent(component.get('componentName'));
       views.push(
-        <ComponentCell key={index}>
+        <ComponentCell
+          key={index}
+          onClick={() => this.props.dispatch(StoryBoardAction.selectComponent(index))}
+        >
           <Com {...component.get('props')} />
         </ComponentCell>
       );

@@ -16,6 +16,7 @@ import * as StoryBoardAction from '../../actions/StoryBoardAction';
 class StoryBoard extends React.Component {
   static propTypes = {
     components: PropTypes.instanceOf(Immutable.List),
+    selectedComponentIndex: PropTypes.number,
     dispatch: PropTypes.func.isRequired,
   };
   _renderComponents(components) {
@@ -25,6 +26,8 @@ class StoryBoard extends React.Component {
       views.push(
         <ComponentCell
           key={index}
+          componentIndex={index}
+          selectedComponentIndex={this.props.selectedComponentIndex}
           onClick={() => this.props.dispatch(StoryBoardAction.selectComponent(index))}
         >
           <Com {...component.get('props')} />

@@ -1,4 +1,0 @@
-# Brief
-
-## props
-* brief:  ***string***

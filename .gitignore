@@ -1,5 +1,1 @@
 .idea
-node_modules
-dist/bundle.js
-dist/main.css
-*.log

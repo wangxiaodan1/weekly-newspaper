@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>CSS&SVG Aminated</title>
+    
+    <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
+    <meta name="author" content="Bartek Szopka" />
+
+    <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" /> -->
+    <link href="css/impress-demo.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+
+<body class="impress-not-supported">
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<!--
+    data-transition-duration="2000"
+    data-perspective="500"
+-->
+<div id="impress">
+    <div id="bored" class="step slide" data-x="-1000" data-y="-2500">
+        <q class='primaryText' style="font-size: 2em"><b>CSS & SVG Animated</b></q>
+        <q style="text-align: right">——— H.S.O 王璐</q>
+    </div>
+    <div class="step slide" data-x="0" data-y="-2500">
+        <q class='primaryText'><strong>CSS 动画</strong></q>
+        <q>通过 CSS3，我们能够创建动画，这可以在许多网页中取代动画图片、Flash 动画以及 JavaScript。</q>
+    </div>
+    <div class="step slide" data-x="1000" data-y="-2500">
+        <p class="FTitle">CSS3动画 —— @keyframes规则</p>
+        <div class="subTitle">定义和用法：</div>
+        <ul>
+            <li>通过 @keyframes 规则，您能够创建动画。</li>
+            <li>创建动画的原理是，将一套 CSS 样式逐渐变化为另一套样式。</li>
+            <li>在动画过程中，您能够多次改变这套 CSS 样式。</li>
+            <li>以百分比来规定改变发生的时间，或者通过关键词 "from" 和 "to"，等价于 0% 和 100%。0%是动画的开始时间，100% 动画的结束时间。</li>
+            <li>注释：请使用动画属性来控制动画的外观，同时将动画与选择器绑定。</li>
+        </ul>   
+    </div>
+    <div class="step slide" data-x="2000" data-y="-2500">
+        <p class="FTitle">CSS3动画 —— @keyframes规则</p>
+        <div class="subTitle">语法</div>
+        <ul>
+            <li>animationname：  必需。定义动画的名称。</li>
+            <li>keyframes-selector：必需。动画时长的百分比。合法的值：0-100% 或 from,to</li>
+            <li>css-styles：必需。一个或多个合法的 CSS 样式属性</li>
+            <a class="demo" target="_blank" href="demo/keyframes.html">例子</a>
+        </ul>  
+    </div>
+    <div class="step slide" data-x="3000" data-y="-2500">
+        <p class="FTitle">CSS3动画 —— animation</p>
+        <div>animation属性是一个简写属性，用于设置六个动画属性：</div>
+        <div>
+            <span class="subTitle">语法：</span>
+            <span class="primaryText">animation: name duration timing-function delay iteration-count direction;</span>
+        </div>
+        <ul>
+            <li>animation-name：规定需要绑定到选择器的 keyframe 名称</li>
+            <li>
+                animation-duration：规定完成动画所花费的时间，以秒或毫秒计
+                <span class="notes">请始终规定，否则时长为 0，就不会播放动画了。</span>
+            </li>
+            <li>animation-timing-function：规定动画的速度曲线。</li>
+            <li>animation-delay：规定在动画开始之前的延迟</li>
+            <li>animation-iteration-count：规定动画应该播放的次数 n|infinite</li>
+            <li>animation-direction：规定是否应该轮流反向播放动画 normal|reverse|alternate|alternate-reverse|initial|inherit</li>
+        </ul> 
+    </div>
+    <div class="step slide" data-x="4000" data-y="-2500">
+        <p class="FTitle">CSS3动画 —— animation</p>
+        <div>animation-timing-function指定动画将如何完成一个周期。速度曲线定义动画从一套 CSS 样式变为另一套所用的时间。速度曲线用于使变化更为平滑。</div>
+        <div class="subTitle">语法：</div>
+        <div class="primaryText">animation-timing-function: value;</div>
+        <img src="img/animation.jpg" alt="" width="700">
+    </div>
+    <div class="step slide" data-x="5000" data-y="-2500">
+        <p class="FTitle">transform ———— CSS3 2D 转换</p>
+        <ul>
+            <li>translate(x, y):元素从其当前位置移动，根据给定的left(x坐标)和top(y坐标)移动。<a class="demo" target="_blank" href="demo/translate.html">例子</a></li>
+            <li>rotate():元素顺时针旋转给定的角度。允许负值，元素将逆时针旋转。<a class="demo" target="_blank" href="demo/rotate.html">例子</a></li>
+            <li>scale(x-angle,y-angle):元素的尺寸会增加或减少，根据给定的宽度（X 轴）和高度（Y 轴）参数。<a class="demo" target="_blank" href="demo/scale.html">例子</a></li>
+            <li>skew(x-angle,y-angle):元素翻转给定的角度，根据给定的水平线（X 轴）和垂直线（Y 轴）参数。<a class="demo" target="_blank" href="demo/skew.html">例子</a></li>
+        </ul>
+    </div>
+    <div class="step slide" data-x="6000" data-y="-2500">
+        <p class="FTitle">transform ———— CSS3 3D 转换</p>
+        <ul>
+            <li>rotateX():元素围绕其 X 轴以给定的度数进行旋转。</li>
+            <li>通过 rotateY() 方法，元素围绕其 Y 轴以给定的度数进行旋转。</li>
+        </ul>
+    </div>
+
+    <div id="title" class="step" data-x="-300" data-y="1000" data-scale="2">
+        <p class="FTitle">transform-origin</p>
+        <span>是变形原点，也就是该元素围绕着哪个点变形或旋转，该属性只有在设置了transform属性的时候起作用</span>
+        <div class="subTitle">语法：</div>
+        <div class="primaryText">transform-origin: x-axis y-axis z-axis;</div>
+        <ul>
+            <li>x-axis:left(0)|center(50%)|right(100%)|length|%</li>
+            <li>y-axis:top|center|bottom|length|%</li>
+            <li>z-axis:length</li>
+        </ul>
+        <a class="demo" target="_blank" href="demo/transformOrigin.html">例子</a>
+    </div>
+
+    <div id="its" class="step" data-x="2000" data-y="2000" data-rotate="90" data-scale="3">
+        <div class="FTitle"><strong>SVG</strong></div>
+        <div>什么是SVG?</div>
+        <ul>
+            <li>SVG 指可伸缩矢量图形 (Scalable Vector Graphics)</li>
+            <li>SVG 用来定义用于网络的基于矢量的图形</li>
+            <li>SVG 使用 XML 格式定义图形</li>
+            <li>SVG 图像在放大或改变尺寸的情况下其图形质量不会有所损失</li>
+            <li>SVG 是万维网联盟的标准</li>
+        </ul>
+    </div>
+
+    <div class="step" data-x="4500" data-y="2100" data-rotate="180" data-scale="4">
+        <div>SVG文件可通过以下标签嵌入HTML文档：标签embed、object 或者 iframe </div>
+    </div>
+
+    <div class="step" data-x="2825" data-y="2325" data-z="-3000" data-rotate="300" data-scale="1">
+        <p class="FTitle">SVG<b>形状</b></p>
+        <div>SVG 有一些预定义的形状元素，可被开发者使用和操作：</div>
+        <ul>
+            <li>矩形 标签rect</li>
+            <li>圆形 circle</li>
+            <li>椭圆 ellipse</li>
+            <li>线 line</li>
+            <li>折线 polyline</li>
+            <li>多边形 polygon</li>
+            <li>路径 path</li>
+        </ul>
+    </div>
+    <div class="step" data-x="1825" data-y="2325" data-z="-2000" data-rotate="300" data-scale="1">
+        <div>SVG滤镜用来向形状和文本添加特殊的效果。必须在defs标签中定义 SVG 滤镜。</div>
+        <div>可用滤镜有:
+            feBlend,feColorMatrix,feComponentTransfer,
+            feComposite,feConvolveMatrix,feDiffuseLighting,
+            feDisplacementMap,feFlood,feGaussianBlur,feImage,
+            feMerge,feMorphology,feOffset,feSpecularLighting,feTile,
+            feTurbulence,feDistantLight,fePointLight,feSpotLight
+        </div>
+    </div>
+    <div class="step" data-x="1500" data-y="-850" data-rotate="270" data-scale="3">
+        <div class="FTitle"><strong>高斯模糊</strong></div>
+        <div>filter标签用来定义 SVG 滤镜。filter标签使用必需的 id 属性来定义向图形应用哪个滤镜</div>
+        <div>filter标签必须嵌套在defs标签内。defs标签是 definitions 的缩写，它允许对诸如滤镜等特殊元素进行定义。</div>
+        <a class="demo" target="_blank" href="demo/filter.svg">例子</a>
+    </div>
+    <div class="step" data-x="4300" data-y="10" data-rotate="20" data-scale="3">
+        <p class="FTitle">SVG 线性渐变</p>
+        <div>线性渐变 和 放射性渐变</div>
+        <div>linearGradient标签可用来定义 SVG 的线性渐变。</div>
+        <div>radialGradient标签用来定义放射性渐变。</div>
+        <a class="demo" target="_blank" href="demo/linearGradient.svg">例子</a>
+    </div>
+    <div id="its-in-3d" class="step" data-x="100" data-y="-1000" data-z="90" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+        <p class="FTitle">谢谢观赏</p>
+    </div>
+
+    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
+    </div>
+
+</div>
+
+<div class="hint">
+    <p>使用空格键或箭头键导航</p>
+</div>
+<script>
+if ("ontouchstart" in document.documentElement) { 
+    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+}
+</script>
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+
+</body>
+</html>
+
+

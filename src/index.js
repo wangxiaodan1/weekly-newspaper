@@ -7,6 +7,7 @@ import reducers from './reducers/reducers';
 import { syncHistory } from 'react-router-redux';
 import { browserHistory } from 'react-router';
 
+import * as GlobelRedux from './utils/redux/Global';
 
 const rootElement = document.getElementById('app');
 
@@ -25,6 +26,13 @@ const store = createStoreWithMiddleware(
   reducers,
   window.devToolsExtension ? window.devToolsExtension() : undefined
 );
+
+const handleSubscribe = () => {
+  GlobelRedux.setStore(store.getState());
+}
+let unsubscribe = store.subscribe(handleSubscribe);
+
+GlobelRedux.setDispatch(store.dispatch);
 
 reduxRouterMiddleware.listenForReplays(store);
 

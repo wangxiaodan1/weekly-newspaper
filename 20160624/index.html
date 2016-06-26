@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>React Native 环境搭建</title>
+    
+    <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
+    <meta name="author" content="Bartek Szopka" />
+
+    <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" /> -->
+    <link href="css/impress-demo.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+
+<body class="impress-not-supported">
+<div class="fallback-message">
+    <!--<p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>-->
+    <!--<p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>-->
+  <p>在PC端Chrome中阅读效果最佳</p>
+</div>
+
+<!--
+    data-transition-duration="2000"
+    data-perspective="500"
+-->
+<div id="impress">
+    <div id="bored" class="step slide" data-x="-1000" data-y="-2500">
+        <q class='primaryText' style="font-size: 2em"><b>React Native 环境搭建</b></q>
+        <q style="text-align: right">——— 胡力友 王思迪</q>
+    </div>
+    <div class="step slide" data-x="0" data-y="-2500" >
+      <p class="FTitle" >iOS & Mac</p >
+      <div class="subTitle" >安装依赖</div >
+      <ul >
+        <li ><a href="http://brew.sh/" target="_blank">Homebrew</a></li >
+        <p style="font-size: 1rem; border-left: 4px solid #05a5d1; padding: 5px 10px; margin-left: 20px; word-wrap:break-word;">
+          /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+        </p>
+        <li ><a href="https://nodejs.org/en/" target="_blank">Node</a></li >
+        <p style="font-size: 1rem; border-left: 4px solid #05a5d1; padding: 5px 10px; margin-left: 20px; word-wrap:break-word;">
+          brew install node
+        </p>
+        <li >react-native-cli</li >
+        <p style="font-size: 1rem; border-left: 4px solid #05a5d1; padding: 5px 10px; margin-left: 20px; word-wrap:break-word;">
+          npm install -g react-native-cli
+        </p>
+        <li >Xcode</li >
+        <li >Watchman</li >
+        <p style="font-size: 1rem; border-left: 4px solid #05a5d1; padding: 5px 10px; margin-left: 20px; word-wrap:break-word;">
+          brew install watchman
+        </p>
+        <li >Flow</li >
+        <p style="font-size: 1rem; border-left: 4px solid #05a5d1; padding: 5px 10px; margin-left: 20px; word-wrap:break-word;">
+          brew install flow
+        </p>
+      </ul >
+    </div >
+    <div class="step slide" data-x="1000" data-y="-2500">
+        <div class="subTitle" >创建工程 & 运行</div >
+        <ul>
+            <li>react-native init YourProjectName</li>
+            <li>cd YourProjectName</li>
+            <li>react-native run-ios</li>
+        </ul>
+    </div>
+    <div class="step slide" data-x="2000" data-y="-2500">
+        <p class="FTitle">Android & Mac</p>
+        <div class="subTitle">安装依赖</div>
+        <ul>
+          <li ><a href="http://brew.sh/" target="_blank">Homebrew</a></li >
+          <li ><a href="https://nodejs.org/en/" target="_blank">Node</a></li >
+          <li >react-native-cli</li >
+          <li><a href="http://developer.android.com/sdk/index.html" target="_blank">Android Studio</a></li>
+          <li><a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank">java</a></li>
+          <li >Watchman</li >
+          <li >Flow</li >
+          <li ><a href="https://www.genymotion.com/" target="_blank">Genymotion</a></li >
+        </ul>
+    </div>
+    <div class="step slide" data-x="3000" data-y="-2500">
+      <div class="subTitle">Android Studio 配置</div>
+      <p>安装过程中有一些需要改动的选项：</p>
+        <ul>
+            <li>选择Custom选项：</li>
+            <img
+              src="http://reactnative.cn/static/docs/0.27/img/react-native-android-studio-custom-install.png"
+              height="300px"
+            />
+        </ul>
+    </div>
+    <div class="step slide" data-x="4000" data-y="-2500">
+      <ul>
+        <li>勾选Performance和Android Virtual Device</li>
+        <img
+                src="http://reactnative.cn/static/docs/0.27/img/react-native-android-studio-additional-installs.png"
+                height="250px"
+        />
+        <li>安装完成后，在Android Studio的启动欢迎界面中选择Configure | SDK Manager</li>
+        <img
+                src="http://reactnative.cn/static/docs/0.27/img/react-native-android-studio-configure-sdk.png"
+                height="250px"
+        />
+      </ul>
+    </div>
+    <div class="step slide" data-x="5000" data-y="-2500">
+      <ul>
+        <li style="font-size: 1rem">在SDK Platforms窗口中，选择Show Package Details，然后在Android 6.0 (Marshmallow)中勾选Google APIs、Intel x86 Atom System Image、Intel x86 Atom_64 System Image以及Google APIs Intel x86 Atom_64 System Image</li>
+        <img
+                src="http://reactnative.cn/static/docs/0.27/img/react-native-android-studio-android-sdk-platforms.png"
+                height="250px"
+        />
+        <li style="font-size: 1rem">在SDK Tools窗口中，选择Show Package Details，然后在Android SDK Build Tools中勾选Android SDK Build-Tools 23.0.1。（必须是这个版本）</li>
+        <img
+                src="http://reactnative.cn/static/docs/0.27/img/react-native-android-studio-android-sdk-build-tools.png"
+                height="250px"
+        />
+      </ul>
+    </div>
+    <div class="step slide" data-x="6000" data-y="-2500">
+      <div class="subTitle">环境变量设置</div>
+        <ul>
+            <li>ANDROID_HOME</li>
+        </ul>
+      <p style="font-size: 1rem;">确保ANDROID_HOME环境变量正确地指向了你安装的Android SDK的路径。具体的做法是把下面的命令加入到~/.bash_profile文件</p>
+      <p style="font-size: 1rem; border-left: 4px solid #05a5d1; padding: 5px 10px; margin-left: 20px; word-wrap:break-word;">
+        # 如果你不是通过Android Studio安装的sdk，则其路径可能不同，请自行确定清楚。<br />
+        export ANDROID_HOME=~/Library/Android/sdk<br />
+
+        # 注意：你的SDK的具体路径可能不同<br />
+        PATH="~/Library/Android/sdk/tools:~/Library/Android/sdk/platform-tools:${PATH}"
+        export PATH
+      </p>
+      <div class="subTitle">创建工程 & 运行</div>
+      <ul>
+        <li>react-native init YourProjectName</li>
+        <li>cd YourProjectName</li>
+        <li>react-native run-ios</li>
+      </ul>
+    </div>
+
+
+    <div id="title" class="step" data-x="-300" data-y="1000" data-scale="2">
+        <p class="FTitle">基于iOS现有项目植入React Native</p>
+        <span>由于React并没有假设你其余部分的技术栈——它通常只作为MVC模型中的V存在——它也很容易嵌入到一个并非由React Native开发的应用当中。</span>
+    </div>
+
+    <div id="its" class="step" data-x="2000" data-y="2000" data-rotate="90" data-scale="3">
+      <div class="subTitle">安装依赖</div>
+        <ul>
+            <li><a href="http://cocoapods.org/" target="_blank">CocoaPods</a> <span style="font-size: 1.5rem; color:red"> gem install cocoapods </span></li>
+            <li>npm install react</li>
+            <li>npm install react-native</li>
+            <li>添加Podfile</li>
+            <img src="img/Screen%20Shot%202016-06-26%20at%205.27.48%20PM.png" height="300" />
+            <li>pod install</li>
+        </ul>
+    </div>
+
+    <div class="step" data-x="4500" data-y="2100" data-rotate="180" data-scale="4">
+      <div class="subTitle">创建React Native运用</div>
+      <ul>
+        <li>创建React Native 入口文件 index.ios.js</li>
+        <li>封装RCTRootView, 创建ReactView.h ReactView.m</li>
+      </ul>
+    </div>
+
+    <div class="step" data-x="2825" data-y="2325" data-z="-3000" data-rotate="300" data-scale="1">
+      <p>index.ios.js</p>
+      <img src="img/Screen%20Shot%202016-06-26%20at%205.56.54%20PM.png" height="600"/>
+    </div>
+
+    <div class="step" data-x="1825" data-y="2325" data-z="-2000" data-rotate="300" data-scale="1">
+      <div>ReactView.h</div>
+      <img src="img/Screen%20Shot%202016-06-26%20at%206.03.55%20PM.png" height="300"/>
+      <div>ReactView.m</div>
+      <img src="img/Screen%20Shot%202016-06-26%20at%206.09.45%20PM.png" height="600"/>
+    </div>
+    <div class="step" data-x="1500" data-y="-850" data-rotate="270" data-scale="3">
+      <div class="subTitle">ViewController里添加React Native View</div>
+      <img src="img/addToView.png" width="800" />
+    </div>
+    <div class="step" data-x="4300" data-y="10" data-rotate="20" data-scale="3">
+      <div class="subTitle">启动服务器</div>
+        <p style="font-size: 1.5rem">在工程的根目录下，我们可以开启React Native开发服务器：</p>
+        <p style="font-size: 1rem; border-left: 4px solid #05a5d1; padding: 5px 10px; margin-left: 20px; word-wrap:break-word;">
+          (JS_DIR=`pwd`/; cd node_modules/react-native; npm run start -- --root $JS_DIR)
+        </p>
+        <p style="font-size: 1.5rem">在iOS 9以上的系统中，除非明确指明，否则应用无法通过http协议连接到localhost主机。请在Info.plist文件中将localhost列为App Transport Security</p>
+        <img src="img/plist.png" height="300" />
+    </div>
+    <div id="its-in-3d" class="step" data-x="100" data-y="-1000" data-z="90" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+        <img src="img/show5.png" height="500" />
+        <p class="FTitle">Hello React Native</p>
+    </div>
+
+    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
+    </div>
+
+</div>
+
+<div class="hint">
+    <p>使用空格键或箭头键导航</p>
+</div>
+<script>
+if ("ontouchstart" in document.documentElement) { 
+    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+}
+</script>
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+
+</body>
+</html>
+
+

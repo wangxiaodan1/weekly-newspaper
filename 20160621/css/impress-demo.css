@@ -136,7 +136,7 @@ a:focus {
     position: relative;
     width: 900px;
     padding: 40px;
-    margin: 20px auto;
+    margin: 40px auto;
 
     -webkit-box-sizing: border-box;
     -moz-box-sizing:    border-box;
@@ -145,8 +145,8 @@ a:focus {
     box-sizing:         border-box;
 
     font-family: 'PT Serif', georgia, serif;
-    font-size: 48px;
-    line-height: 1.5;
+    font-size: 40px;
+    line-height: 1.2;
 }
 
 /*

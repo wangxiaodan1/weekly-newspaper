@@ -1,0 +1,89 @@
+@keyframes husky-tail {
+     10% {
+         background: red;
+         transform: rotate(2deg);
+     }
+     13.33333% {
+         transform: rotate(0);
+     }
+     26.66667% {
+         background: orange;
+         transform: rotate(5deg);
+     }
+     30% {
+         transform: rotate(0);
+     }
+     50% {
+         background: yellow;
+         transform: rotate(8deg);
+     }
+     50.83333% {
+         transform: rotate(0);
+     }
+     75.66667% {
+         background: green;
+         transform: rotate(10deg);
+     }
+
+ }
+@keyframes tail {
+    10% {
+        background: red;
+        transform: rotate(10deg);
+    }
+    13.33333% {
+        transform: rotate(0);
+    }
+    26.66667% {
+        background: orange;
+        transform: rotate(20deg);
+    }
+    30% {
+        transform: rotate(0);
+    }
+    50% {
+        background: yellow;
+        transform: rotate(30deg);
+    }
+    50.83333% {
+        transform: rotate(0);
+    }
+    75.66667% {
+        background: green;
+        transform: rotate(40deg);
+    }
+
+}
+.husky-tail {
+    position: absolute;
+    width: 15%;
+    height: 6%;
+    bottom: 0%;
+    right: 72%;
+    background: #1372D8;
+    z-index: 0;
+}
+#tail-left{
+    border-top-left-radius: 30% 30%;
+    border-bottom-left-radius: 50% 50%;
+    border-bottom-right-radius: 30% 30%;
+}
+.husky-tail > .husky-tail {
+    animation: husky-tail 4s none infinite;
+    height: 100%;
+    width: 120px;
+    right: 26%;
+    transform-origin: center right;
+    border-bottom-left-radius: 70% 50%;
+    transform: rotate(26deg);
+    transform: rotate(0deg);
+}
+.husky > .husky-tail {
+    animation: tail 4s none infinite;
+    transform-origin: center right;
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+}
+.husky > .husky-tail > .husky-tail {
+    right: 80%;
+}

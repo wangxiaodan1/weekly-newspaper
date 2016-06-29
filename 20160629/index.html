@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Communication between native and React Native</title>
+    
+    <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
+    <meta name="author" content="Bartek Szopka" />
+
+    <!-- <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" /> -->
+    <link href="css/impress-demo.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+
+<body class="impress-not-supported">
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<!--
+    data-transition-duration="2000"
+    data-perspective="500"
+-->
+<div id="impress">
+    <div id="bored" class="step slide" data-x="-1000" data-y="-2500">
+        <q class='primaryText' style="font-size: 2em"><b>Communication between native and React Native</b></q>
+        <q style="text-align: right">——— SiDi Wang</q>
+    </div>
+    <div class="step slide" data-x="0" data-y="-2500">
+        <q class='primaryText' style="font-size: 2em"><b>Communication between native and React Native</b></q>
+        <q>本文将讲解RN与iOS原生之间的通信</q>
+    </div>
+    <div class="step slide" data-x="1000" data-y="-2500">
+        <p class="FTitle">从原生传递属性到RN</p>
+        <ul>
+            <li style="font-size: 1.5rem">在之前的文章中，我们讲解了在现有工程中集成RN。在混合开发中，我们避免不了RN与Native之间的通信，现在我们具体来看看应该怎么做（本篇文章已默认您看过之前的环境搭建相关内容）</li>
+            <li style="font-size: 1.5rem">RN为我们提供了RCTRootView来将RN视图封装到原生组件中,在RCTRootView的构造函数中，我们很方便的把原生属性传递给RN。比如，此时我们传递一个userName为NeverMore。RCTRootView接收一个字典类型的参数<br/>
+                <img width="800" height="200" src="image/show1.png">
+            </li>
+        </ul>   
+    </div>
+    <div class="step slide" data-x="2000" data-y="-2500">
+        <ul>
+            <li style="font-size: 1.5rem">在js里，我们可以直接在相关组件的render方法中打印出来<br/>
+                <img width="800" height="200" src="image/show2.png">
+            </li>
+            <li style="font-size: 1.5rem">
+                运行程序，在Xcode控制台里，我们看到了刚才我们打印的内容<br/>
+                <img width="800" height="100" src="image/show3.png">
+            </li>
+            <li style="font-size: 1.5rem">
+                现在我们是在初始化的时候给RN传递了属性,下面我们还可以在适当的时机去传递属性。接下来我们演示这种方式
+            </li>
+
+        </ul>  
+    </div>
+    <div class="step slide" data-x="3000" data-y="-2500">
+        <ul>
+            <li style="font-size: 1.5rem">RCTRootView有一个默认属性appProperties,这个属性的类型也是一个NSDictionary，我们通过给这个属性赋值，可以达到改变RN props的目的，如果新的props和旧的props不一致，RN将会重新渲染</li>
+            <li style="font-size: 1.5rem">
+                现在我们来手动操作一下，在RN加载完毕以后，我们让线程睡眠三秒，然后给appProperties赋值,属性的key必须和之前的对应<br/>
+                <img width="700" height="330" src="image/show4.png">
+            </li>
+        </ul> 
+    </div>
+    <div class="step slide" data-x="4000" data-y="-2500">
+        <ul>
+            <li style="font-size: 1.5rem">
+                但是注意，更新属性不能只更新一部分的props，必须是当前组件中的所有props，举个例子<br/>
+                我们首先向RN传递两个props:userName&&userAge，然后在线程睡眠3秒之后，我们只更新userName一个属性</br>
+                <img width="700" height="330" src="image/show5.png">
+            </li>
+
+        </ul>
+    </div>
+    <div class="step slide" data-x="5000" data-y="-2500">
+
+        <ul>
+            <li style="font-size: 1.5rem">在js中，我们这样来处理</br>
+                <img width="700" height="330" src="image/show6.png">
+            </li>
+            <li style="font-size: 1.5rem">
+                运行程序，我们首先在屏幕中间看到了NeverMore___23,这是初始化的时候的props，3秒之后变成HelloRN___undefined,说明userAge属性为空
+            </li>
+
+            <li style="font-size: 1.5rem">第二种方式只是用于props相对较少，或者都由Native传递的情况，大多数情况并不适用。另外，对于第二种方式，还有更好的办法可以替代，后面会提到</li>
+        </ul>
+    </div>
+    <div class="step slide" data-x="6000" data-y="-2500">
+        <p class="FTitle">从RN传递属性到原生</p>
+        <ul>
+            <li>这里我们有两种方式，一种是通过方法带过来的参数，另外一种是继承RCTViewManager,只针对于封装原生组件在RN中展示时的数据传递。第一种方式我们在后面调用方法的时候会讲到，也是最常用的一种方式。我们先来看第二种
+            </li>
+            <li>第二种方式你需要封装原生组件，步骤如下:</br>
+                1.首先创建一个子类</br>
+                2.添加RCT_EXPORT_MODULE()标记宏</br>
+                3.实现-(UIView *)view方法</br>
+                具体实现请看官方文档，这里不做赘述
+            </li>
+
+        </ul>
+    </div>
+
+
+
+    <div id="title" class="step" data-x="-300" data-y="1000" data-scale="2">
+        <p class="FTitle">原生调用RN函数</p>
+        <ul>
+
+            <li style="font-size: 1.5rem">导入相关类，现在我们想要调用RN中的某一个方法，主要有以下步骤</li>
+            <li style="font-size: 1.5rem">创建一个类，继承NSObject，实现RCTBridgeModule协议,实现属性bridge(如果不实现程序会崩溃)</li>
+            <li style="font-size: 1.5rem">在init方法中添加一个通知，方便在适当时机调用</li>
+            <li style="font-size: 1.5rem">之前我们提到，在适当时机向RN传递参数。在这里，调用bridge.eventDispatcher的sendAppEvent方法，第一个参数为事件名称，第二个为要传递的参数，如图<br/>
+                <img width="700" height="330" src="image/show7.png">
+            </li>
+
+        </ul>
+    </div>
+
+    <div id="its" class="step" data-x="2000" data-y="2000" data-rotate="90" data-scale="3">
+
+        <ul>
+            <li style="font-size: 1.5rem">在js中，我们在周期函数componentDidMount中使用NativeAppEventEmitter为事件增加监听，传入事件名称(之前Native中定义)以及一个方法(收到事件后执行)</br>
+                <img width="700" height="330" src="image/show8.png">
+            </li>
+            <li style="font-size: 1.5rem">在这里我们简单打印一个log</li>
+        </ul>
+    </div>
+
+    <div class="step" data-x="4500" data-y="2100" data-rotate="180" data-scale="4">
+        <ul>
+            <li style="font-size: 1.5rem">最后我们同样在线程睡眠3秒之后，使用通知调用（注意适当的时机）</li>
+            <img width="700" height="100" src="image/show9.png">
+            <li style="font-size: 1.5rem">在控制台我们看到了如下信息，方法成功被调用</br>
+                <img width="700" height="100" src="image/show10.png">
+            </li>
+            <li style="font-size: 1.5rem">关于事件，官方文档给出如下警告：<br/>1.由于事件可以从各种地方产生，它们可能导致混乱的依赖。</br>
+                2.事件共享相同的命名空间，因此你可能遇到名字冲突。冲突不会在编写代码时被探测到，因此很难排错。</br>
+                3.如果你使用了同一个React Native组件的多个引用，然后想在事件中区分它们，name你很可能需要在事件中同时传递一些标识（你可以使用原生视图中的reactTag作为标识）。</br>
+                大家在使用时需要注意，避免落入事件陷阱
+            </li>
+        </ul>
+    </div>
+
+    <div class="step" data-x="2825" data-y="2325" data-z="-3000" data-rotate="300" data-scale="1">
+        <p class="FTitle">RN调用原生函数</p>
+        <div style="font-size: 1.3rem">对于调用原生API，官方文档给出的解释是这样的：</br>
+            有时候App需要访问平台API，但React Native可能还没有相应的模块封装；或者你需要复用Objective-C、Swift或C++代码，而不是用JavaScript重新实现一遍；又或者你需要实现某些高性能、多线程的代码，譬如图片处理、数据库、或者各种高级扩展等等。</br>
+            在混合开发中，我们经常需要操作navigator栈，以及数据封装等，所以RN调用原生函数是不可避免的。本篇将演示一个从RN传数据到Native，再回传RN的例子。下面来看具体步骤
+        </div>
+        <ul>
+            <li style="font-size: 1.3rem">首先，我们需要一个原生类供RN调用。一个集成NSObject，并且添加了RCT_EXPORT_MODULE宏,实现了RCTBridgeModule协议的类</li>
+            <li style="font-size: 1.3rem">然后，我们需要使用RCT_EXPORT_METHOD宏标记我们想要调用的方法,目前可支持传递的数据类型如下<br/>
+                1.string (NSString)</br>
+                2.number (NSInteger, float, double, CGFloat, NSNumber)</br>
+                3.boolean (BOOL, NSNumber)</br>
+                4.array (NSArray) 包含本列表中任意类型</br>
+                5.map (NSDictionary) 包含string类型的键和本列表中任意类型的值</br>
+                6.function (RCTResponseSenderBlock)</br>
+            </li>
+        </ul>
+    </div>
+    <div class="step" data-x="1825" data-y="2325" data-z="-2000" data-rotate="300" data-scale="1">
+        <ul>
+            <li style="font-size: 1.5rem">原生方法大概是这样:</br>
+                <img width="700" height="100" src="image/show11.png"></br>
+                注意：回调函数的参数是一个数组
+            </li>
+            <li style="font-size: 1.5rem">在js中，我们实现一个点击事件，点击以后调用原生函数。它向原生传入一个String和一个回调函数，在回调函数中，会接收原生拼接的字符串信息并打印</br>
+                <img width="800" height="400" src="image/show12.png"></br>
+            </li>
+        </ul>
+    </div>
+    <div class="step" data-x="1500" data-y="-850" data-rotate="270" data-scale="3">
+
+        <div style="font-size: 1.5rem">最后，启动程序，点击中间的文字，最后在控制台输出如下结果，大功告成</br>
+            <img width="800" height="600" src="image/show13.png"></br>
+        </div>
+
+    </div>
+    <div class="step" data-x="4300" data-y="10" data-rotate="20" data-scale="3">
+        <p class="FTitle">使用Promises对象</p>
+        <ul>
+            <li style="font-size: 1.5rem">本篇假设你已经知道并理解Promises和async的用法，不知道的请看阮一峰写的<a href="http://es6.ruanyifeng.com/#docs/promise">ECMAScript6入门</a>></li>
+            <li style="font-size: 1.5rem">Promises对象是一个异步编程的解决方案，比起回调和事件来说更加强大（解决多层回调嵌套），ES6统一了Promises的用法（官方实现）。Promise有两个函数，resolve和reject,前者可以立即为成功的回调，后者为失败的回调</br>
+            </li>
+            <li style="font-size: 1.5rem">首先我们使用RCT_REMAP_METHOD宏,它可以重新定义js函数的名字，还可以让js函数返回一个Promise对象。</br>
+                <img width="800" height="300" src="image/show15.png"></br>
+            </li>
+        </ul>
+    </div>
+    <div id="its-in-3d" class="step" data-x="100" data-y="-1000" data-z="90" data-rotate-x="-40" data-rotate-y="10" data-scale="2">
+        <li style="font-size: 1.5rem">然后我们在js里面使用async函数来接收刚才所指定的函数返回的Promises对象。在控制台你将会看到你在原生模块传递的字符串！</br>
+            <img width="700" height="600" src="image/show14.png"></br>
+        </li>
+    </div>
+
+    <div id="overview" class="step" data-x="3000" data-y="1500" data-scale="10">
+    </div>
+
+</div>
+
+<div class="hint">
+    <p>使用空格键或箭头键导航</p>
+</div>
+<script>
+if ("ontouchstart" in document.documentElement) { 
+    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+}
+</script>
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+
+</body>
+</html>
+
+
